@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <h3>אנשי קשר </h3>
     <div class="contacts">
     {% for contact in contacts %}
    
@@ -15,6 +16,12 @@
         <div class="phone">{{contact.phone}}</div>
         <div class="address">{{contact.address}}</div>
         <div class="email">{{contact.mail}}</div>
+        <div class="delete">
+            <form action="/delete" method="GET">
+                <input type="hidden" name="id" value="{{contact.id}}">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
     </div>
     {% endfor %}
 </div>
