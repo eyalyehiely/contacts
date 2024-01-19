@@ -1,0 +1,22 @@
+.contacts{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    width: fit-content;
+   
+}
+
+.row{
+    display:flex;
+    gap:10px;
+    background-color: antiquewhite;
+}
+
+
+.row > *{
+    width:10em;
+    gap:10px;
+    background-color: azure;
+    direction: rtl;
+    border: 1px solid silver;
+}
