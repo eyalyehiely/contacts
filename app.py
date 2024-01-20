@@ -41,6 +41,9 @@ def delete_contact():
     query(f"DELETE FROM contacts where id= {request.args['id']}")
     return home()
 
+
+
+
     
 
 

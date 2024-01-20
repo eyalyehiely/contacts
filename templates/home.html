@@ -6,8 +6,80 @@
     <title>Home</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+<script>
+    function validate(mail){
+        if (mail.includes('gmail')){
+            alert("cannot delete this user");
+            return;
+        }
+        document.getElementById('deleteForm').submit()
+    }
+
+    let pass1 = false
+    let pass2 = false
+    let pass3 = false
+function validateCreate(){
+    if(document.getElementById('name').value==''){
+        message.innerHTML="Please fill out the name (name and last name)";
+        document.getElementById('name').style.backgroundColor='pink';
+    }
+        else{
+            pass1 = true
+        }
+        
+    
+    if(!document.getElementById('phone').value.slice(0,3) in {'052':'','053':'','054':''}){
+        message.innerHTML+="This phone is not valid";
+        document.getElementById('phone').style.backgroundColor='pink';
+    }
+    else{
+        pass2 = true
+    }
+    
+   
+    
+        
+    
+    if(!document.getElementById('email').value.includes('@')){
+        message.innerHTML+="This email is not valid";
+        document.getElementById('email').style.backgroundColor='pink';
+    }
+        else{
+            pass3=true
+        }
+    
+       
+    
+
+     
+    
+
+if (pass1==false || pass2==false || pass3==false){
+    message.innerHTML="data is not valid";
+}
+else{
+createForm.submit();
+}
+}
+
+
+
+
+
+</script>
+
 <body>
     <h3>אנשי קשר </h3>
+    <div id="message" class="message"></div>
+    <form action="/create" method='POST' id="createForm">
+        <input type="text" name="name" placeholder="Name" id="name">
+        <input type="text" name="phone" placeholder=Phone id=phone>
+        <input type="email" name="email" placeholder="Email" id="email">
+        <input type= "text" name="address" placeholder='Address' id=address>
+        
+    </form>
+    <button onclick="validateCreate()">Create Contact</button>
+
     <div class="contacts">
     {% for contact in contacts %}
    
@@ -15,12 +87,13 @@
         <div class="name">{{contact.name}}</div>
         <div class="phone">{{contact.phone}}</div>
         <div class="address">{{contact.address}}</div>
-        <div class="email">{{contact.mail}}</div>
+        <div class="mail">{{contact.mail}}</div>
         <div class="delete">
-            <form action="/delete" method="GET">
+            <form action="/delete" method="GET" id='deleteForm'>
                 <input type="hidden" name="id" value="{{contact.id}}">
-                <input type="submit" value="Delete">
             </form>
+                <button onclick="validate('{{contact.mail}}')">Delete</button>
+           
         </div>
     </div>
     {% endfor %}
