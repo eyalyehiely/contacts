@@ -28,7 +28,7 @@ function validateCreate(){
         }
         
     
-    if(!document.getElementById('phone').value.slice(0,3) in {'052':'','053':'','054':''}){
+    if((!document.getElementById('phone').value.slice(0,3) in {'052':'','053':'','054':''}) && (!document.getElementById('phone').value=='')){
         message.innerHTML+="This phone is not valid";
         document.getElementById('phone').style.backgroundColor='pink';
     }
@@ -40,7 +40,7 @@ function validateCreate(){
     
         
     
-    if(!document.getElementById('email').value.includes('@')){
+    if((!document.getElementById('email').value.includes('@'))&&(!document.getElementById('email').value=='')){
         message.innerHTML+="This email is not valid";
         document.getElementById('email').style.backgroundColor='pink';
     }
